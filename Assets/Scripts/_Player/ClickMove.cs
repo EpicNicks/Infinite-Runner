@@ -33,7 +33,7 @@ public class ClickMove : MonoBehaviour
 
         if (chargeImage != null)
         {
-            chargeImage.fillAmount = Mathf.Lerp(0, 1, timer - 1);
+            chargeImage.fillAmount = Mathf.Lerp(0, 1, (timer + 1) / 2 - 1);
         }
     }
 
