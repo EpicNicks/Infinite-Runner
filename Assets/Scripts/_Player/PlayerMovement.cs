@@ -48,7 +48,7 @@ public class PlayerMovement : MonoBehaviour {
         if(!isGrounded && hasDblJmp && canDblJmp)
         {
             hasDblJmp = false;
-            rbod.velocity = jumpforce / 25;
+            rbod.linearVelocity = jumpforce / 25;
             //rbod.AddForce(jumpforce * 1.5f);
         }
     }

@@ -20,7 +20,7 @@ public class Tooltip : MonoBehaviour {
         else if (curToolTipBox != gameObject)
             Destroy(gameObject); // On reload, singleton already set, so destroy duplicate.
 
-        curToolTipBox = Instantiate(toolTipBox, FindObjectOfType<Canvas>().transform) as GameObject;
+        curToolTipBox = Instantiate(toolTipBox, FindAnyObjectByType<Canvas>().transform);
         curToolTipBox.transform.position = Input.mousePosition;
         toolTipText = curToolTipBox.GetComponentInChildren<Text>();
         toolTipText.text = toolTip;

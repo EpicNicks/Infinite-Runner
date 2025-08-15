@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MusicManager : MonoBehaviour {
@@ -28,7 +29,8 @@ public class MusicManager : MonoBehaviour {
 
     void OnLevelLoad (Scene scene, LoadSceneMode mode)
     {
-        AudioClip thisLevelMusic = levelMusicArray[scene.buildIndex];
+        int musicIndex = scene.buildIndex;
+        AudioClip thisLevelMusic = (levelMusicArray.Length > musicIndex) ? levelMusicArray[musicIndex] : null;
         Debug.Log("Playing clip: " + thisLevelMusic);
 
         if (thisLevelMusic) //If there is music playing

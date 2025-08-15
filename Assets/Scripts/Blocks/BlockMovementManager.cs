@@ -7,13 +7,20 @@ public class BlockMovementManager : MonoBehaviour {
     public float difficulty;
     public static List<Block> blocks = new List<Block>();
 
+    private float secondsElapsed = 0;
+
     private void Start()
     {
         speed = 0;
     }
 
     void Update () {
-        if (speed < 0.2f)
+        if (!Pause.isPaused)
+        {
+            secondsElapsed += Time.deltaTime;
+        }
+
+        if (speed < 20f)
         {
             IncreaseSpeed();
         }
@@ -21,13 +28,13 @@ public class BlockMovementManager : MonoBehaviour {
         foreach (Block b in blocks)
         {
             if(!Pause.isPaused)
-                b.Move(speed);
+                b.Move(speed * Time.deltaTime);
         }
 	}
 
     void IncreaseSpeed()
     {
-        speed = (Time.timeSinceLevelLoad / 10 + 1) / 10;
+        speed = (secondsElapsed / 20 + 10);
     }
 
     public static void AddBlock(Block b)

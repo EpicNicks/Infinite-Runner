@@ -7,20 +7,24 @@ public class BGColorSet : MonoBehaviour {
 
     void Start () {
         Image image = GetComponent<Image>();
-        Color invisible = new Color(0, 0, 0, 0);
-
-        switch (ColorSetter.selected)
+        if (image != null)
         {
-            case ColorSetter.NumOptions.COOL: chosenColor = Color.cyan; break;
-            case ColorSetter.NumOptions.WARM: chosenColor = Color.red; break;
-            case ColorSetter.NumOptions.DARK: chosenColor = Color.grey; break;
-            case ColorSetter.NumOptions.LIGHT: chosenColor = Color.white; break;
-            case ColorSetter.NumOptions.FABULOUS: chosenColor = Color.magenta; break;
-            case ColorSetter.NumOptions.RANDOM: chosenColor = ColorRandomizer.RandomLight(); break;
-            case ColorSetter.NumOptions.CLASSICBLACK: chosenColor = invisible; break;
-            case ColorSetter.NumOptions.CLASSICWHITE: chosenColor = Color.black; break;
-            default: chosenColor = Color.white; break;
+            return;
         }
+        Color invisible = new(0, 0, 0, 0);
+
+        chosenColor = ColorSetter.selected switch
+        {
+            ColorSetter.NumOptions.COOL => Color.cyan,
+            ColorSetter.NumOptions.WARM => Color.red,
+            ColorSetter.NumOptions.DARK => Color.grey,
+            ColorSetter.NumOptions.LIGHT => Color.white,
+            ColorSetter.NumOptions.FABULOUS => Color.magenta,
+            ColorSetter.NumOptions.RANDOM => ColorRandomizer.RandomLight(),
+            ColorSetter.NumOptions.CLASSICBLACK => invisible,
+            ColorSetter.NumOptions.CLASSICWHITE => Color.black,
+            _ => Color.white,
+        };
         image.color = chosenColor;
     }
 }
